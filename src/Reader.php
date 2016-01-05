@@ -8,9 +8,9 @@ namespace clagiordano\weblibs\localization;
  */
 interface Reader
 {
-    public function read();
+    public function read($bytes);
 
-    public function seekTo();
+    public function seekTo($position);
 
     public function currentPos();
 

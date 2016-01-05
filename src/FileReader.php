@@ -36,19 +36,39 @@ class FileReader implements Reader
     }
 
     /**
+     * @param $bytes
      * @return mixed
      */
-    public function read()
+    public function read($bytes)
     {
-        // TODO: Implement read() method.
+        $data = "";
+
+        if ($bytes) {
+            fseek($this->fileHandle, $this->position);
+
+            // PHP 5.1.1 does not read more than 8192 bytes in one fread()
+            // the discussions at PHP Bugs suggest it's the intended behaviour
+            while ($bytes > 0) {
+                $chunk = fread($this->fileHandle, $bytes);
+                $data .= $chunk;
+                $bytes -= strlen($chunk);
+            }
+            $this->position = ftell($this->fileHandle);
+        }
+
+        return $data;
     }
 
     /**
+     * @param $position
      * @return mixed
      */
-    public function seekTo()
+    public function seekTo($position)
     {
-        // TODO: Implement seekTo() method.
+        fseek($this->fileHandle, $position);
+        $this->position = ftell($this->fileHandle);
+
+        return $this->position;
     }
 
     /**
@@ -56,7 +76,7 @@ class FileReader implements Reader
      */
     public function currentPos()
     {
-        // TODO: Implement currentPos() method.
+        return $this->position;
     }
 
     /**
@@ -64,7 +84,14 @@ class FileReader implements Reader
      */
     public function length()
     {
-        // TODO: Implement length() method.
+        return $this->length;
     }
 
+    /**
+     * @return boolean
+     */
+    private function close()
+    {
+        return fclose($this->fileHandle);
+    }
 }
