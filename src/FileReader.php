@@ -11,7 +11,7 @@ class FileReader implements Reader
     const ERROR_CANNOT_READ_FILE = 3;
     const ERROR_FILE_NOT_EXISTS = 2;
 
-    private $filePosition;
+    private $filePosition = 0;
     private $fileHandle;
     private $fileLength;
 
@@ -25,7 +25,6 @@ class FileReader implements Reader
     {
         if (file_exists($filename)) {
             $this->fileLength = filesize($filename);
-            $this->filePosition = 0;
             $this->fileHandle = fopen($filename, 'rb');
 
             if (!$this->fileHandle) {
@@ -43,9 +42,13 @@ class FileReader implements Reader
      * @param $bytes
      * @return mixed
      */
-    public function read($bytes)
+    public function read($bytes = null)
     {
         $data = "";
+
+        if (is_null($bytes)) {
+            $bytes = ($this->fileLength - $this->filePosition);
+        }
 
         if ($bytes) {
             fseek($this->fileHandle, $this->filePosition);
@@ -97,5 +100,13 @@ class FileReader implements Reader
     private function close()
     {
         return fclose($this->fileHandle);
+    }
+
+    /**
+     *
+     */
+    public function __destruct()
+    {
+        $this->close();
     }
 }
