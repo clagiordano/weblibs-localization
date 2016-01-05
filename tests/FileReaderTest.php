@@ -18,12 +18,7 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->class = new FileReader('testdata/messages.po');
 
-        $this->assertInstanceOf(
-            'clagiordano\weblibs\localization\FileReader',
-            $this->class
-        );
     }
 
     /**
@@ -35,8 +30,10 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function testStart()
+    public function testNotExistentFile()
     {
-        //$this->markTestIncomplete();
+        $this->setExpectedException('Exception');
+
+        $this->class = new FileReader('invalid path');
     }
 }
