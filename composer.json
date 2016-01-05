@@ -1,0 +1,36 @@
+{
+  "name": "clagiordano/weblibs-localization",
+  "description": "Abstraction library for the PHP-gettext backend",
+  "type": "library",
+  "homepage": "https://github.com/clagiordano/weblibs-localization.git",
+  "license": "gpl3",
+  "authors": [
+    {
+      "name": "Claudio Giordano",
+      "email": "claudio.giordano@autistici.org",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "claudio.giordano@autistici.org"
+  },
+  "autoload": {
+    "psr-4": {
+      "clagiordano\\weblibs\\localization\\": "src/",
+      "clagiordano\\weblibs\\localization\\tests\\": "tests/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "clagiordano\\weblibs\\localization\\tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "php": ">=5.4",
+    "phpunit/phpunit": "5.*",
+    "phpunit/phpunit-skeleton-generator": "*"
+  }
+}
