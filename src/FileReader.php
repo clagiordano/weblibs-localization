@@ -14,7 +14,6 @@ class FileReader implements Reader
     private $filePosition;
     private $fileHandle;
     private $fileLength;
-    private $errorCode;
 
     /**
      * FileReader constructor.
@@ -30,14 +29,10 @@ class FileReader implements Reader
             $this->fileHandle = fopen($filename, 'rb');
 
             if (!$this->fileHandle) {
-//                $this->errorCode = 3; // Cannot read file, probably permissions
-//                return self::ERROR_CANNOT_READ_FILE;
                 throw new \Exception(__METHOD__
                     . ": Cannot read file '{$filename}', probably permissions.");
             }
         } else {
-//            $this->errorCode = 2; // File doesn't exist
-//            return self::ERROR_FILE_NOT_EXISTS;
             throw new \Exception(__METHOD__ . ": File '{$filename}' doesn't exist!");
         }
 
