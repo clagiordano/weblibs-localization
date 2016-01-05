@@ -10,9 +10,6 @@ use clagiordano\weblibs\localization\FileReader;
  */
 class FileReaderTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var CacheRedis
-     */
     protected $class;
 
     /**
@@ -21,8 +18,12 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->markTestIncomplete();
-        $this->class = new FileReader();
+        $this->class = new FileReader('testdata/messages.po');
+
+        $this->assertInstanceOf(
+            'clagiordano\weblibs\localization\FileReader',
+            $this->class
+        );
     }
 
     /**
@@ -32,5 +33,10 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
 
+    }
+
+    public function testStart()
+    {
+        //$this->markTestIncomplete();
     }
 }
