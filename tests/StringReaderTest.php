@@ -2,13 +2,13 @@
 
 namespace clagiordano\weblibs\localization\tests;
 
-use clagiordano\weblibs\localization\FileReader;
+use clagiordano\weblibs\localization\StringReader;
 
 /**
- * Class FileReaderTest
+ * Class StringReaderTest
  * @package clagiordano\weblibs\localization\tests
  */
-class FileReaderTest extends \PHPUnit_Framework_TestCase
+class StringReaderTest extends \PHPUnit_Framework_TestCase
 {
     protected $class;
 
@@ -18,10 +18,11 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->class = new FileReader('testdata/messages.po');
+        $fileConent = file_get_contents('testdata/messages.po');
+        $this->class = new StringReader($fileConent);
 
         $this->assertInstanceOf(
-            'clagiordano\weblibs\localization\FileReader',
+            'clagiordano\weblibs\localization\StringReader',
             $this->class
         );
     }
@@ -33,32 +34,6 @@ class FileReaderTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
 
-    }
-
-    public function testNotExistentFile()
-    {
-        $this->setExpectedException('Exception');
-
-        $this->class = new FileReader('invalid path');
-    }
-
-    public function testNoPermissionFile()
-    {
-        $this->markTestIncomplete();
-
-        $this->setExpectedException('Exception');
-
-        $this->class = new FileReader('file with no permission');
-    }
-
-    public function testValidFile()
-    {
-        $this->class = new FileReader('testdata/messages.po');
-
-        $this->assertInstanceOf(
-            'clagiordano\weblibs\localization\FileReader',
-            $this->class
-        );
     }
 
     public function testReadFile()
