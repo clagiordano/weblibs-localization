@@ -3,7 +3,7 @@
   "description": "Abstraction library for the PHP-gettext backend",
   "type": "library",
   "homepage": "https://github.com/clagiordano/weblibs-localization.git",
-  "license": "gpl3",
+  "license": "LGPL-3.0",
   "authors": [
     {
       "name": "Claudio Giordano",
