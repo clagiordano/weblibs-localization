@@ -4,6 +4,9 @@
   "type": "library",
   "homepage": "https://github.com/clagiordano/weblibs-localization.git",
   "license": "LGPL-3.0",
+  "keywords": [
+    "clagiordano", "weblibs", "localization", "gettext", "intl", "library"
+  ],
   "authors": [
     {
       "name": "Claudio Giordano",
